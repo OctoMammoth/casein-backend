@@ -41,22 +41,29 @@ model Room {
 }
 
 model Route {
-  id          String    @id @default(cuid())
+  id          String        @id @default(cuid())
   title       String
   description String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  agency      Agency    @relation(fields: [agencyId], references: [id])
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  agency      Agency        @relation(fields: [agencyId], references: [id])
   agencyId    String
   Room        Room[]
+  route       Json?
   startAt     DateTime
   endAt       DateTime?
+  Achievement Achievement?
 }
 
 model Achievement {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   User      User[]
+  qr_secret String?
+  name      String
+  prizes    Json?
+  route     Route?   @relation(fields: [routeId], references: [id])
+  routeId   String?
 }
 
 enum RoleEnum {

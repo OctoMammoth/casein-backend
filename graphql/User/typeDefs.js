@@ -3,10 +3,27 @@ const { default: gql } = require('graphql-tag')
 const User = gql`
   type User {
     id: String!
-    login: String!
+    email: String!
+    password: String!
     name: String!
-    surname: String
     role: RoleEnum!
+    agency: Agency
+    rooms(
+      where: RoomWhereInput
+      orderBy: RoomOrderByInput
+      cursor: RoomWhereUniqueInput
+      take: Int
+      skip: Int
+      distinct: RoomScalarFieldEnum
+    ): [Room!]!
+    Achievements(
+      where: AchievementWhereInput
+      orderBy: AchievementOrderByInput
+      cursor: AchievementWhereUniqueInput
+      take: Int
+      skip: Int
+      distinct: AchievementScalarFieldEnum
+    ): [Achievement!]!
   }
 
   type Query {
@@ -45,6 +62,8 @@ const User = gql`
     ): AggregateUser
   }
   type Mutation {
+    registerUser(email: String!, password: String!): AuthType!
+    authUser(email: String!, password: String!): AuthType!
     createOneUser(data: UserCreateInput!): User!
     updateOneUser(where: UserWhereUniqueInput!, data: UserUpdateInput!): User!
     deleteOneUser(where: UserWhereUniqueInput!): User
@@ -58,6 +77,11 @@ const User = gql`
       where: UserWhereInput
       data: UserUpdateManyMutationInput
     ): BatchPayload
+  }
+
+  type AuthType {
+    token: String,
+    user: User,
   }
 `
 

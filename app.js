@@ -5,6 +5,9 @@ const { PrismaClient } = require('@prisma/client')
 
 const prisma = new PrismaClient()
 
+const { mergeTypeDefs } = require('@graphql-tools/merge')
+// const { default: gql } = require('graphql-tag')
+
 const express = require('express')
 const cors = require('cors')
 const path = require('path')
@@ -29,8 +32,12 @@ app.listen(portExpress, () => {
     console.log('images server start on http://localhost:' + portExpress)
 })
 
+const defaultTypeDefs = gql`
+    scalar Json
+`
+
 const server = new ApolloServer({
-    typeDefs,
+    typeDefs: mergeTypeDefs([typeDefs, defaultTypeDefs]),
     resolvers,
     context: (req) => {
         const { authorization } = req.req.headers
