@@ -1,0 +1,34 @@
+{
+  "name": "casein-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "build": "prisma migrate reset --preview-feature --force && prisma migrate dev --preview-feature && npx prisma generate",
+    "migrate": "prisma migrate dev --preview-feature",
+    "paljs": "node generate.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prisma": "^2.18.0",
+    "@graphql-tools/merge": "^6.2.7",
+    "@paljs/generator": "^2.13.0",
+    "@paljs/plugins": "^2.13.0",
+    "@paljs/schema": "^2.13.0",
+    "@prisma/client": "^2.18.0",
+    "apollo-server": "^2.21.0",
+    "dotenv": "^8.2.0",
+    "graphql": "^15.5.0",
+    "graphql-tag": "^2.11.0",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "path": "^0.12.7"
+  }
+}

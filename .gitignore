@@ -1,0 +1,9 @@
+.idea
+.graphqlconfig
+.env
+.vscode
+node_modules
+/data
+/public/*
+/prisma/migrations
+/src
