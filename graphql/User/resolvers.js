@@ -1,3 +1,8 @@
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+
+const { PrismaSelect } = require('@paljs/plugins');
+
 const User = {
     Query: {
         findUniqueUser: (_parent, args, { prisma }) => {
@@ -18,8 +23,7 @@ const User = {
     },
     Mutation: {
         registerUser: async (_parent, { email, password }, { prisma }) => {
-            passwordBcrypt = await bcrypt.hash(password, 10);
-            data.password = passwordBcrypt;
+            password = await bcrypt.hash(password, 10);
             const user = await prisma.user.create({ data: {email, password} });
             const token = jwt.sign({ id: user.id }, process.env[`USER_SECRET`]);
             return {

@@ -13,7 +13,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "prisma": "^2.18.0",
     "@graphql-tools/merge": "^6.2.7",
     "@paljs/generator": "^2.13.0",
     "@paljs/plugins": "^2.13.0",
@@ -23,9 +22,11 @@
     "dotenv": "^8.2.0",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.11.0",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "prisma": "^2.18.0"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
